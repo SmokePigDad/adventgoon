@@ -1,0 +1,418 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Official Gay Gooner Advent Calendar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f1f5f9;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d4af37;
+            font-size: 2.5rem;
+            margin: 20px 0 40px 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .door-wrapper {
+            height: 200px;
+            perspective: 1500px;
+        }
+
+        .door-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .door-wrapper:hover .door-inner {
+            transform: scale(1.05);
+        }
+
+        .door-wrapper.opened .door-inner {
+            transform: rotateY(180deg);
+        }
+
+        .door-front,
+        .door-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .door-front {
+            background: linear-gradient(135deg, #8b0000 0%, #5c0000 100%);
+            border: 3px solid #d4af37;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .door-back {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border: 3px solid #d4af37;
+            transform: rotateY(180deg);
+            flex-direction: column;
+            padding: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .door-back .day-number {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 35px;
+            font-weight: bold;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #fff;
+        }
+
+        .modal-title {
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #334155;
+        }
+
+        .modal-text {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+
+        /* Snowflakes */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5em;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .calendar-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 15px;
+            }
+
+            .door-wrapper {
+                height: 160px;
+            }
+
+            .door-front {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Official Gay Gooner Advent Calendar</h1>
+        
+        <div class="calendar-grid" id="calendarGrid">
+            <!-- Doors will be inserted here -->
+        </div>
+
+        <footer>
+            <p>Celebrating the season with a touch of history</p>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-text" id="modalText"></div>
+        </div>
+    </div>
+
+    <script>
+        // Calendar data
+        const calendarData = [
+            {
+                day: 15,
+                title: "Leviticus 18:22",
+                text: '"You shall not lie with a male as with a woman; it is an abomination."'
+            },
+            {
+                day: 16,
+                title: "Genesis 38:8-10 (The Story of Onan)",
+                text: '"Then Judah said to Onan, \'Go in to your brother\'s wife and perform the duty of a brother-in-law to her, and raise up offspring for your brother.\' But Onan knew that the offspring would not be his. So whenever he went in to his brother\'s wife he would waste [his seed] on the ground, so as not to give offspring to his brother. And what he did was wicked in the sight of the Lord, and he put him to death also."'
+            },
+            {
+                day: 17,
+                title: "Leviticus 20:13",
+                text: '"If a man lies with a male as with a woman, both of them have committed an abomination; they shall surely be put to death; their blood is upon them."'
+            },
+            {
+                day: 18,
+                title: "Parashara Smriti 12.63 (Hinduism)",
+                text: '"If a householder willingly causes the discharge of his virile seed otherwise than in sexual intercourse, he shall perform the penance of \'Chandrayana\'."'
+            },
+            {
+                day: 19,
+                title: "Romans 1:26-27",
+                text: '"For this reason God gave them up to dishonorable passions. For their women exchanged natural relations for those that are contrary to nature; and the men likewise gave up natural relations with women and were consumed with passion for one another, men committing shameless acts with men and receiving in themselves the due penalty for their error."'
+            },
+            {
+                day: 20,
+                title: "Matthew 5:27-30 (Christianity)",
+                text: '"You have heard that it was said, \'You shall not commit adultery.\' But I say to you that everyone who looks at a woman with lustful intent has already committed adultery with her in his heart... And if your right hand causes you to sin, cut it off and throw it away; it is better for you to lose one of your members than for your whole body to go into hell."'
+            },
+            {
+                day: 21,
+                title: "1 Corinthians 6:9-10",
+                text: '"...nor men who practice homosexuality [or, effeminate, or, male prostitutes, or, sodomites] will inherit the kingdom of God."'
+            },
+            {
+                day: 22,
+                title: "Quranic Narrative of Lut (Lot) — Surah Al-A'raf (7:80-84)",
+                text: '"And [We had sent] Lot when he said to his people, \'Do you commit such immorality as no one has preceded you with from among the worlds? Indeed, you approach men with desire, instead of women. Rather, you are a transgressing people.\' ... So We saved him and his family, except for his wife; ... And We rained upon them a rain [of stones]. Then see how was the end of the criminals."'
+            },
+            {
+                day: 23,
+                title: "Surah An-Naml (27:54-58)",
+                text: '"And [We had sent] Lot to his people, [saying], \'Do you commit immorality while you are seeing? Do you indeed approach men with desire instead of women? Rather, you are a people behaving ignorantly.\' ... And We rained upon them a rain [of stones], and evil was the rain of those who were warned."'
+            },
+            {
+                day: 24,
+                title: "Confusian says...",
+                text: '"Gently pull back foreskin,\nWash with water, clean and mild,\nDry, then pull it back."'
+            }
+        ];
+
+        // Get saved state from localStorage
+        function getOpenedDoors() {
+            const saved = localStorage.getItem('openedDoors');
+            return saved ? JSON.parse(saved) : {};
+        }
+
+        // Save opened door state
+        function saveOpenedDoor(day) {
+            const opened = getOpenedDoors();
+            opened[day] = true;
+            localStorage.setItem('openedDoors', JSON.stringify(opened));
+        }
+
+        // Create calendar
+        function createCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            const openedDoors = getOpenedDoors();
+
+            calendarData.forEach(item => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'door-wrapper';
+                wrapper.id = `door-${item.day}`;
+                
+                // Check if door was previously opened
+                if (openedDoors[item.day]) {
+                    wrapper.classList.add('opened');
+                }
+
+                wrapper.innerHTML = `
+                    <div class="door-inner">
+                        <div class="door-front">
+                            ${item.day}
+                        </div>
+                        <div class="door-back">
+                            <div class="day-number">Day ${item.day}</div>
+                            <div>Click to read</div>
+                        </div>
+                    </div>
+                `;
+
+                wrapper.addEventListener('click', function() {
+                    if (!wrapper.classList.contains('opened')) {
+                        wrapper.classList.add('opened');
+                        saveOpenedDoor(item.day);
+                        
+                        setTimeout(() => {
+                            showModal(item);
+                        }, 800);
+                    } else {
+                        showModal(item);
+                    }
+                });
+
+                grid.appendChild(wrapper);
+            });
+        }
+
+        // Show modal
+        function showModal(item) {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modalTitle');
+            const text = document.getElementById('modalText');
+
+            title.textContent = item.title;
+            text.textContent = item.text;
+            modal.classList.add('show');
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Create snowflakes
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            snowflake.style.opacity = Math.random() * 0.6 + 0.3;
+            
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createCalendar();
+            
+            // Create snowflakes
+            setInterval(createSnowflake, 200);
+        });
+    </script>
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
